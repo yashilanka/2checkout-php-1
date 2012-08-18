@@ -16,16 +16,15 @@ abstract class Twocheckout
     }
 }
 
-require(dirname(__FILE__) . '/Twocheckout/Api/Account.php');
-require(dirname(__FILE__) . '/Twocheckout/Api/Payment.php');
-require(dirname(__FILE__) . '/Twocheckout/Api/Api.php');
-require(dirname(__FILE__) . '/Twocheckout/Api/Sale.php');
-require(dirname(__FILE__) . '/Twocheckout/Api/Product.php');
-require(dirname(__FILE__) . '/Twocheckout/Api/Coupon.php');
-require(dirname(__FILE__) . '/Twocheckout/Api/Option.php');
-require(dirname(__FILE__) . '/Twocheckout/Api/Util.php');
-require(dirname(__FILE__) . '/Twocheckout/Return.php');
-require(dirname(__FILE__) . '/Twocheckout/Ins.php');
-require(dirname(__FILE__) . '/Twocheckout/Charge.php');
-
-?>
+require(dirname(__FILE__) . '/Twocheckout/Api/TwocheckoutAccount.php');
+require(dirname(__FILE__) . '/Twocheckout/Api/TwocheckoutPayment.php');
+require(dirname(__FILE__) . '/Twocheckout/Api/TwocheckoutApi.php');
+require(dirname(__FILE__) . '/Twocheckout/Api/TwocheckoutSale.php');
+require(dirname(__FILE__) . '/Twocheckout/Api/TwocheckoutProduct.php');
+require(dirname(__FILE__) . '/Twocheckout/Api/TwocheckoutCoupon.php');
+require(dirname(__FILE__) . '/Twocheckout/Api/TwocheckoutOption.php');
+require(dirname(__FILE__) . '/Twocheckout/Api/TwocheckoutUtil.php');
+require(dirname(__FILE__) . '/Twocheckout/TwocheckoutReturn.php');
+require(dirname(__FILE__) . '/Twocheckout/TwocheckoutNotification.php');
+require(dirname(__FILE__) . '/Twocheckout/TwocheckoutCharge.php');
+require(dirname(__FILE__) . '/Twocheckout/TwocheckoutMessage.php');
