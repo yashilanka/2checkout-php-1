@@ -18,6 +18,7 @@ require_once("/path/to/2checkout-php/lib/Twocheckout.php");
 JSON is returned by default or you can add 'array' as an additional argument to each call to get an Array.
 **Example:**
 ```php
+<?php
 Twocheckout_Sale::refund($args, 'array');
 ```
 
@@ -30,6 +31,7 @@ Example API Usage
 *Example Request:*
 
 ```php
+<?php
 Twocheckout::setCredentials("apiusername", "apipassword");
 $args = array('sale_id' => 4753855417);
 Twocheckout_Sale::stop($args, 'array');
@@ -38,6 +40,7 @@ Twocheckout_Sale::stop($args, 'array');
 *Example Response:*
 
 ```php
+<?php
 Array
 (
     [Lineitem(s) Stopped Successfully] => Array
@@ -56,6 +59,7 @@ Example Checkout Usage:
 *Example Request:*
 
 ```php
+<?php
 $args = array(
     'sid' => 532001,
     'cart_order_id' => 'Example Cart ID',
@@ -70,6 +74,7 @@ Example Return Usage:
 *Example Request:*
 
 ```php
+<?php
 $params = array();
 foreach ($_REQUEST as $k => $v) {
     $params[$k] = $v;
@@ -91,7 +96,8 @@ Example INS Usage:
 
 *Example Request:*
 
-```json
+```php
+<?php
 $params = array();
 foreach ($_POST as $k => $v) {
     $params[$k] = $v;
