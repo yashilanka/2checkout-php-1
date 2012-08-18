@@ -14,7 +14,7 @@ class Twocheckout_Option extends Twocheckout
     public static function retrieve($params=array(), $format='json')
     {
         $request = new Twocheckout_Api_Requester();
-        if(isset($params['coupon_code'])) {
+        if(array_key_exists("option_id",$params)) {
             $urlSuffix = 'products/detail_option';
         } else {
             $urlSuffix = 'products/list_options';

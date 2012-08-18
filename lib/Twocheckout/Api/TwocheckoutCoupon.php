@@ -14,7 +14,7 @@ class Twocheckout_Coupon extends Twocheckout
     public static function retrieve($params=array(), $format='json')
     {
         $request = new Twocheckout_Api_Requester();
-        if(isset($params['coupon_code'])) {
+        if(array_key_exists("coupon_code",$params)) {
             $urlSuffix = 'products/detail_coupon';
         } else {
             $urlSuffix = 'products/list_coupons';

@@ -6,7 +6,7 @@ class Twocheckout_Sale extends Twocheckout
     public static function retrieve($params=array(), $format='json')
     {
         $request = new Twocheckout_Api_Requester();
-        if(isset($params['sale_id'])) {
+        if(array_key_exists("sale_id",$params) || array_key_exists("invoice_id",$params)) {
             $urlSuffix = 'sales/detail_sale';
         } else {
             $urlSuffix = 'sales/list_sales';
