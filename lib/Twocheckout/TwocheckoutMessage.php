@@ -9,6 +9,6 @@ class Twocheckout_Message
         $response['code'] = $code;
         $response['message'] = $message;
         $response = json_encode($response);
-        return json_decode($response, true);
+        return $response;
     }
 }
