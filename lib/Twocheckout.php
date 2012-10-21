@@ -7,7 +7,7 @@ abstract class Twocheckout
     public static $format = "json";
     public static $apiBaseUrl = "https://www.2checkout.com/api/";
     public static $error;
-    const VERSION = '0.0.1';
+    const VERSION = '0.1.0';
 
     function setCredentials($user, $pass)
     {
@@ -24,6 +24,7 @@ require(dirname(__FILE__) . '/Twocheckout/Api/TwocheckoutProduct.php');
 require(dirname(__FILE__) . '/Twocheckout/Api/TwocheckoutCoupon.php');
 require(dirname(__FILE__) . '/Twocheckout/Api/TwocheckoutOption.php');
 require(dirname(__FILE__) . '/Twocheckout/Api/TwocheckoutUtil.php');
+require(dirname(__FILE__) . '/Twocheckout/Api/TwocheckoutError.php');
 require(dirname(__FILE__) . '/Twocheckout/TwocheckoutReturn.php');
 require(dirname(__FILE__) . '/Twocheckout/TwocheckoutNotification.php');
 require(dirname(__FILE__) . '/Twocheckout/TwocheckoutCharge.php');

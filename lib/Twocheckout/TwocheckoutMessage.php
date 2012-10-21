@@ -2,8 +2,7 @@
 
 class Twocheckout_Message
 {
-
-    static function message($code, $message)
+    public static function message($code, $message)
     {
         $response = array();
         $response['code'] = $code;

@@ -7,6 +7,7 @@ class Twocheckout_Util
         switch ($format) {
             case "array":
                 $arrayObject = self::objectToArray($contents);
+                self::checkError($arrayObject);
                 return $arrayObject;
                 break;
             case "force_json":
@@ -14,12 +15,14 @@ class Twocheckout_Util
                 return $arrayObject;
                 break;
             default:
+                $arrayObject = self::objectToArray($contents);
+                self::checkError($arrayObject);
                 $jsonData = json_encode($contents);
                 return json_decode($jsonData);
         }
     }
 
-    public function objectToArray($object)
+    public static function objectToArray($object)
     {
         $object = json_decode($object, true);
         $array=array();
@@ -30,12 +33,12 @@ class Twocheckout_Util
         return $array;
     }
 
-    public function objectToJson($object)
+    public static function objectToJson($object)
     {
         return json_encode($object);
     }
 
-    static function get_recurring_lineitems($saleDetail) {
+    public static function get_recurring_lineitems($saleDetail) {
         $i = 0;
         $invoiceData = array();
 
@@ -57,6 +60,13 @@ class Twocheckout_Util
 
         return $lineitemData;
 
+    }
+
+    public static function checkError($contents)
+    {
+        if (isset($contents['errors'])) {
+            throw new Twocheckout_Error($contents['errors'][0]['message']);
+        }
     }
 
 }
