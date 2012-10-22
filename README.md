@@ -22,7 +22,7 @@ JSON is returned by default or you can add 'array' as an additional argument to 
 Twocheckout_Sale::refund($args, 'array');
 ```
 
-Full documentation for each binding will be provided in the [Wiki](https://github.com/craigchristenson/2checkout-php/wiki).
+Full documentation for each binding is provided in the [Wiki](https://github.com/craigchristenson/2checkout-php/wiki).
 
 
 Example API Usage
@@ -32,8 +32,8 @@ Example API Usage
 
 ```php
 <?php
-Twocheckout::setCredentials("apiusername", "apipassword");
-$args = array('sale_id' => 4753855417);
+Twocheckout::setCredentials("APIuser1817037", "APIpass1817037");
+$args = array('sale_id' => 4834917619);
 Twocheckout_Sale::stop($args, 'array');
 ```
 
@@ -41,16 +41,14 @@ Twocheckout_Sale::stop($args, 'array');
 
 ```php
 <?php
-Array
-(
-    [Lineitem(s) Stopped Successfully] => Array
-        (
-            [0] => 4763150311
-            [1] => 4763150323
-            [2] => 4763150335
-        )
 
-)
+[response_code] => OK
+[response_message] => Array
+    (
+        [0] => 4834917634
+        [1] => 4834917646
+        [2] => 4834917658
+    )
 ```
 
 Example Checkout Usage:
@@ -60,12 +58,24 @@ Example Checkout Usage:
 
 ```php
 <?php
-$args = array(
-    'sid' => 532001,
-    'cart_order_id' => 'Example Cart ID',
-    'total' => '1.00'
+$params = array(
+    'sid' => '1817037',
+    'mode' => '2CO',
+    'li_0_name' => 'Test Product',
+    'li_0_price' => '0.01'
 );
-Twocheckout_Charge::redirect($args);
+Twocheckout_Charge::form($params, 'auto');
+```
+
+*Example Response:*
+```php
+<form id="2checkout" action="https://www.2checkout.com/checkout/spurchase" method="post">
+<input type="hidden" name="sid" value="1817037"/>
+<input type="hidden" name="mode" value="2CO"/>
+<input type="hidden" name="li_0_name" value="Test Product"/>
+<input type="hidden" name="li_0_price" value="0.01"/>
+<input type="submit" value="Click here if you are not redirected automatically" /></form>
+<script type="text/javascript">document.getElementById('2checkout').submit();</script>
 ```
 
 Example Return Usage:
@@ -79,16 +89,16 @@ $params = array();
 foreach ($_REQUEST as $k => $v) {
     $params[$k] = $v;
 }
-$passback = Twocheckout_Return::check($params, "tango");
+$passback = Twocheckout_Return::check($params, "tango", 'array');
 ```
 
 *Example Response:*
 
-```json
-{
-  "code" : "Success",
-  "message" : "Hash Matched"
-}
+```php
+<?php
+
+[response_code] => Success
+[response_message] => Hash Matched
 ```
 
 Example INS Usage:
@@ -102,16 +112,16 @@ $params = array();
 foreach ($_POST as $k => $v) {
     $params[$k] = $v;
 }
-$passback = Twocheckout_Notification::check($params, "tango");
+$passback = Twocheckout_Notification::check($params, "tango", 'array');
 ```
 
 *Example Response:*
 
-```json
-{
-  "code" : "Success",
-  "message" : "Hash Matched"
-}
+```php
+<?php
+
+[response_code] => Success
+[response_message] => Hash Matched
 ```
 
-Full documentation for each binding will be provided in the [Wiki](https://github.com/craigchristenson/2checkout-php/wiki).
+Full documentation for each binding is provided in the [Wiki](https://github.com/craigchristenson/2checkout-php/wiki).

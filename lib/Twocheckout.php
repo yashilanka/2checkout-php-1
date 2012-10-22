@@ -9,7 +9,7 @@ abstract class Twocheckout
     public static $error;
     const VERSION = '0.1.0';
 
-    function setCredentials($user, $pass)
+    static function setCredentials($user, $pass)
     {
         self::$user = $user;
         self::$pass = $pass;

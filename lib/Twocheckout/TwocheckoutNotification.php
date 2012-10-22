@@ -3,7 +3,7 @@
 class Twocheckout_Notification extends Twocheckout
 {
 
-    public function check($insMessage, $secretWord, $format='json')
+    public static function check($insMessage, $secretWord, $format='json')
     {
         $hashSid = $insMessage['vendor_id'];
         $hashOrder = $insMessage['sale_id'];

@@ -12,9 +12,11 @@ class Twocheckout_Charge extends Twocheckout
             echo "<input type=\"hidden\" name=\"$key\" value=\"$value\"/>\n";
         }
         if ($type == "auto") {
+            echo "<input type=\"submit\" value=\"Click here if you are not redirected automatically\" /></form>\n";
             echo "<script type=\"text/javascript\">document.getElementById('2checkout').submit();</script>";
         } else {
-            echo "<input type=\"submit\" value=\"$type\" /></form>";
+            echo "<input type=\"submit\" value=\"$type\" />\n";
+            echo "</form>";
         }
     }
 

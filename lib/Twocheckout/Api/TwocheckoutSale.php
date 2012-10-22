@@ -50,12 +50,12 @@ class Twocheckout_Sale extends Twocheckout
                     }
                     $i++;
                 }
-                $result = Twocheckout_Message::message('Success', $stoppedLineitems);
+                $result = Twocheckout_Message::message('OK', $stoppedLineitems);
             } else {
-                $result = Twocheckout_Message::message('Notice', 'No recurring lineitems to stop.');
+                throw new Twocheckout_Error("No recurring lineitems to stop.");
             }
         } else {
-            $result = Twocheckout_Message::message('Notice', 'You must pass a sale_id or lineitem_id to use this method.');
+            throw new Twocheckout_Error('You must pass a sale_id or lineitem_id to use this method.');
         }
         return Twocheckout_Util::return_resp($result, $format);
     }
@@ -64,24 +64,19 @@ class Twocheckout_Sale extends Twocheckout
         if(array_key_exists("sale_id",$params)) {
             $result = Twocheckout_Sale::retrieve($params);
             $array = Twocheckout_Util::return_resp($result, 'array');
-            if (!array_key_exists('errors', $array)) {
-                $lineitemData = Twocheckout_Util::get_recurring_lineitems($array);
-                if (isset($lineitemData[0])) {
-                    if ($format == 'array') {
-                        return Twocheckout_Util::return_resp($lineitemData, $format);
-                    } else {
-                        return Twocheckout_Util::return_resp($lineitemData, 'force_json');
-                    }
-                } else {
-                    $result = Twocheckout_Message::message('Notice', 'No recurring lineitems.');
+            $lineitemData = Twocheckout_Util::get_recurring_lineitems($array);
+            if (isset($lineitemData[0])) {
+                $result = Twocheckout_Message::message('OK', $lineitemData);
+                if ($format == 'array') {
                     return Twocheckout_Util::return_resp($result, $format);
+                } else {
+                    return Twocheckout_Util::return_resp($result, 'force_json');
                 }
             } else {
-                return Twocheckout_Util::return_resp($result, $format);
+                throw new Twocheckout_Error("No active recurring lineitems.");
             }
         } else {
-            $result = Twocheckout_Message::message('Error', 'You must pass a sale_id to use this method.');
-            return Twocheckout_Util::return_resp($result, $format);
+            throw new Twocheckout_Error("You must pass a sale_id to use this method.");
         }
     }
 
