@@ -124,4 +124,27 @@ $passback = Twocheckout_Notification::check($params, "tango", 'array');
 [response_message] => Hash Matched
 ```
 
+Exceptions:
+-----------
+Twocheckout_Error exceptions are thrown by if an error has returned. It is best to catch these exceptions so that they can be gracefully handled in your application.
+
+*Example Usage*
+
+```php
+<?php
+
+Twocheckout::setCredentials("APIuser1817037", "APIpass1817037");
+
+$params = array(
+'sale_id' => 4774380224,
+'category' => 1,
+'comment' => 'Order never sent.'
+);
+try {
+  $sale = Twocheckout_Sale::refund($params, 'array'); 
+} catch (Twocheckout_Error $e) {
+  $e->getMessage()); 
+}
+```
+
 Full documentation for each binding is provided in the [Wiki](https://github.com/craigchristenson/2checkout-php/wiki).
